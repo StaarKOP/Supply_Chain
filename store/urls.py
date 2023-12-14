@@ -15,6 +15,9 @@ from .views import (
     ProductListView,
     OrderListView,
     DeliveryListView,
+    delivery_report,
+    supplier_signup,
+    buyer_signup
 )
 
 urlpatterns = [
@@ -33,4 +36,13 @@ urlpatterns = [
     path('product-list/', ProductListView.as_view(), name='product-list'),
     path('order-list/', OrderListView.as_view(), name='order-list'),
     path('delivery-list/', DeliveryListView.as_view(), name='delivery-list'),
+
+    # Your other URL patterns
+    path('delivery_report/', delivery_report, name='delivery_report'),
+    path('supplier_signup/', supplier_signup, name='supplier_signup'),
+    path('buyer_signup/', buyer_signup, name='buyer_signup'),
+
+
+
+
 ]

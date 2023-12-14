@@ -42,8 +42,13 @@ class Drop(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=120, unique=True)
+    supplier = models.ForeignKey(Supplier, on_delete=models.CASCADE)
     sortno = models.PositiveIntegerField()
+    design = models.CharField(max_length=120, unique=False)
+    color = models.CharField(max_length=120, unique=False)
+    price = models.PositiveIntegerField()
     created_date = models.DateField(auto_now_add=True)
+
 
     def __str__(self):
         return self.name
@@ -52,7 +57,7 @@ class Product(models.Model):
 class Order(models.Model):
     STATUS_CHOICE = (
         ('pending', 'Pending'),
-        ('decline', 'Decline'),
+        ('declined', 'Declined'),
         ('approved', 'Approved'),
         ('processing', 'Processing'),
         ('complete', 'Complete'),
@@ -63,13 +68,17 @@ class Order(models.Model):
     design = models.CharField(max_length=50)
     color = models.CharField(max_length=50)
     buyer = models.ForeignKey(Buyer, on_delete=models.CASCADE, null=True)
+    quantity = models.PositiveIntegerField(default=1)
     season = models.ForeignKey(Season, on_delete=models.CASCADE, null=True)
     drop = models.ForeignKey(Drop, on_delete=models.CASCADE, null=True)
     status = models.CharField(max_length=10, choices=STATUS_CHOICE)
     created_date = models.DateField(auto_now_add=True)
 
-    def __str__(self):
-        return self.product.name
+
+def __str__(self):
+    self.product.sortno -= self.quantity
+    self.product.save()
+    return self.product.name
 
 
 class Delivery(models.Model):
@@ -79,3 +88,8 @@ class Delivery(models.Model):
 
     def __str__(self):
         return self.courier_name
+
+
+class Reports(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    delivery_date = models.DateTimeField(auto_now_add=True)

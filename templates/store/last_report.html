@@ -1,0 +1,88 @@
+{% extends 'base/base.html' %}
+
+{% block title %}Delivery Report{% endblock title %}
+
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+    <div class="breadcrumbs-inner">
+        <div class="row m-0">
+            <div class="col-sm-4">
+                <div class="page-header float-left">
+                    <div class="page-title">
+                        <h1>Dashboard</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div class="page-header float-right">
+                    <div class="page-title">
+                        <ol class="breadcrumb text-right">
+                            <li><a href="#">Dashboard</a></li>
+                            <li><a href="#">Delivery</a></li>
+                            <li class="active">Report</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock breadcrumbs %}
+
+{% block content %}
+<div class="row">
+    <div class="col-xl-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="box-title">Delivery Report </h4>
+            </div>
+            <div class="card-body--">
+                <div class="table-stats order-table ov-h">
+                    <table class="table ">
+                        <thead>
+                            <tr>
+                                <th class="serial">#</th>
+                                <th>Product</th>
+                                <th>Design</th>
+                                <th>Color</th>
+                                <th>Buyer</th>
+                                <th>Delivery Date</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if last_delivery %}
+                                <tr>
+                                    <td class="serial">1</td>
+                                    <td>{{ last_delivery.product }}</td>
+                                    <td>{{ last_delivery.design }}</td>
+                                    <td>{{ last_delivery.color }}</td>
+                                    <td>{{ last_delivery.buyer }}</td>
+                                    <td>{{ last_delivery.delivery_date }}</td>
+                                    <td>
+                                        {% if last_delivery.status == 'pending' %}
+                                            <a class="btn btn-warning" href="">{{ last_delivery.status }}</a>
+                                        {% elif last_delivery.status == 'declined' %}
+                                            <a class="btn btn-danger" href="">{{ last_delivery.status }}</a>
+                                        {% elif last_delivery.status == 'complete' %}
+                                            <a class="btn btn-success" href="">{{ last_delivery.status }}</a>
+                                        {% elif last_delivery.status == 'approved' %}
+                                            <a class="btn btn-primary" href="">{{ last_delivery.status }}</a>
+                                        {% elif last_delivery.status == 'bulk' %}
+                                            <a class="btn btn-secondary" href="">{{ last_delivery.status }}</a>
+                                        {% else %}
+                                            <a class="btn btn-info" href="">{{ last_delivery.status }}</a>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr><td>No Delivery Data</td></tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div> <!-- /.table-stats -->
+            </div>
+        </div> <!-- /.card -->
+    </div>  <!-- /.col-xl-12 -->
+</div>
+{% endblock content %}

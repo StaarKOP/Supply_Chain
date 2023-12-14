@@ -42,10 +42,7 @@
                     <div class="card-body">
                         <form action="#" method="post" novalidate="novalidate">
                             {% csrf_token %}
-                            <div class="form-group">
-                                <label for="supplier" class="control-label mb-1">Supplier</label>
-                                {{ form.supplier }}
-                            </div>
+
                             <div class="form-group">
                                 <label for="product" class="control-label mb-1">Product</label>
                                 {{ form.product }}
@@ -58,13 +55,14 @@
                                 <label for="color" class="control-label mb-1">Color</label>
                                 {{ form.color }}
                             </div>
-                            <div class="form-group">
-                                <label for="buyer" class="control-label mb-1">Buyer</label>
-                                {{ form.buyer }}
-                            </div>
+
                             <div class="form-group">
                                 <label for="season" class="control-label mb-1">Season</label>
                                 {{ form.season }}
+                            </div>
+                            <div class="form-group">
+                                <label for="quantity" class="control-label mb-1">Quantity</label>
+                                {{ form.quantity }}
                             </div>
                             <div class="form-group">
                                 <label for="drop" class="control-label mb-1">Drop</label>
@@ -84,4 +82,24 @@
 
     </div><!--/.col-->
 </div>
+
+    <script>
+    // Function to update the current stock based on the selected product
+    function updateStock() {
+      var productSelect = document.getElementById('id_product');
+      var currentStockInput = document.getElementById('id_current_stock');
+
+      // Get the selected product from the dropdown
+      var selectedProduct = productSelect.options[productSelect.selectedIndex];
+
+      // Update the current stock input field with the stock of the selected product
+      currentStockInput.value = selectedProduct.getAttribute('data-stock');
+    }
+
+    // Attach the updateStock function to the change event of the product dropdown
+    document.getElementById('id_product').addEventListener('change', updateStock);
+
+    // Call the updateStock function initially to set the initial value
+    updateStock();
+  </script>
 {% endblock content %}

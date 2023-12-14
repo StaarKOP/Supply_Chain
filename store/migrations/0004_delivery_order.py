@@ -17,7 +17,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('design', models.CharField(max_length=50)),
                 ('color', models.CharField(max_length=50)),
-                ('status', models.CharField(choices=[('decline', 'Decline'), ('approved', 'Approved'), ('processing', 'Processing'), ('complete', 'Complete'), ('bulk', 'Bulk')], max_length=10)),
+                ('status', models.CharField(choices=[('declined', 'Declined'), ('approved', 'Approved'), ('processing', 'Processing'), ('complete', 'Complete'), ('bulk', 'Bulk')], max_length=10)),
                 ('created_date', models.DateField(auto_now_add=True)),
                 ('buyer', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='store.Buyer')),
                 ('drop', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='store.Drop')),

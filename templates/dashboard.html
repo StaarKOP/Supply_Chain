@@ -99,6 +99,7 @@
                                         <th>Product</th>
                                         <th>Design</th>
                                         <th>Color</th>
+                                        <th>Quantity</th>
                                         <th>Buyer</th>
                                         <th>Season</th>
                                         <th>Drop</th>
@@ -115,6 +116,7 @@
                                         <td>{{ order.product }}</td>
                                         <td>{{ order.design }}</td>
                                         <td>{{ order.color }}</td>
+                                        <td>{{ order.quantity }}</td>
                                         <td>{{ order.buyer }}</td>
                                         <td>{{ order.season }}</td>
                                         <td>{{ order.drop }}</td>
@@ -122,7 +124,7 @@
                                         <td>
                                             {% if order.status == 'pending' %}
                                                 <a class="btn btn-warning" href="">{{ order.status }}</a>
-                                            {% elif order.status == 'decline' %}
+                                            {% elif order.status == 'declined' %}
                                                 <a class="btn btn-danger" href="">{{ order.status }}</a>
                                             {% elif order.status == 'complete' %}
                                                 <a class="btn btn-success" href="">{{ order.status }}</a>

@@ -8,11 +8,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Store | Login</title>
-    <meta name="description" content="Ela Admin - HTML5 Admin Template">
+    <meta name="description" content="Rifat Ahmed , Practicum Project SCM">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="apple-touch-icon" href="https://i.imgur.com/QRAUqs9.png">
-    <link rel="shortcut icon" href="https://i.imgur.com/QRAUqs9.png">
+    <link rel="apple-touch-icon" href="https://iconduck.com/icons/68200/settings#">
+    <link rel="shortcut icon" href="https://iconduck.com/icons/68200/settings#">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.0/normalize.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
@@ -57,6 +57,10 @@
 
                         </div>
                         <button type="submit" class="btn btn-success btn-flat m-b-30 m-t-30">Log in</button>
+
+
+  <!-- Modal for sign-up options -->
+
                         <div class="social-login-content">
                             <div class="social-button">
                                 <button type="button" class="btn social facebook btn-flat btn-addon mb-3"><i class="ti-facebook"></i>Sign in with facebook</button>
@@ -64,7 +68,15 @@
                             </div>
                         </div>
                         <div class="register-link m-t-15 text-center">
-                            <p>Don't have account ? <a href="#"> Sign Up Here</a></p>
+                            <p>Don't have an account ? <button id="signupBtn">Sign Up Here</button></p>
+                            <div id="signupModal" class="modal">
+                                <div class="modal-content">
+                                    <span class="close">&times;</span>
+                                    <p>Choose Sign Up Option:</p>
+                                    <button id="supplierSignupBtn">Supplier Sign Up</button>
+                                    <button id="buyerSignupBtn">Buyer Sign Up</button>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -77,6 +89,45 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery-match-height@0.7.2/dist/jquery.matchHeight.min.js"></script>
     <script src="{% static 'assets/js/main.js' %}"></script>
+    <script>
+    // Get the modal
+    var modal = document.getElementById('signupModal');
+
+    // Get the button that opens the modal
+    var signupBtn = document.getElementById('signupBtn');
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName('close')[0];
+
+    // When the user clicks the button, open the modal
+    signupBtn.onclick = function () {
+      modal.style.display = 'block';
+    };
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+      modal.style.display = 'none';
+    };
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = 'none';
+      }
+    };
+
+    // Handle clicks on supplier and buyer sign-up buttons
+    var supplierSignupBtn = document.getElementById('supplierSignupBtn');
+    var buyerSignupBtn = document.getElementById('buyerSignupBtn');
+
+    supplierSignupBtn.onclick = function () {
+      window.location.href = "{% url 'supplier_signup' %}";
+    };
+
+    buyerSignupBtn.onclick = function () {
+      window.location.href = "{% url 'buyer_signup' %}";
+    };
+    </script>
 
 </body>
 </html>

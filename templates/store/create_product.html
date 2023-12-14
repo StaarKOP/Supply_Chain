@@ -43,13 +43,32 @@
                         <form action="#" method="post" novalidate="novalidate">
                             {% csrf_token %}
                             <div class="form-group">
-                                <label for="name" class="control-label mb-1">Name</label>
+                                <label for="supplier_name" class="control-label mb-1">Supplier Name:</label>
+                                <!-- Display the supplier's name as a disabled text field -->
+                                 <td> {{ user.username }}</td>
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="control-label mb-1">Product Name</label>
                                 {{ form.name }}
                             </div>
+                            <div class="form-group">
+                                <label for="design" class="control-label mb-1">Design</label>
+                                {{ form.design }}
+                            </div>
+                            <div class="form-group">
+                                <label for="color" class="control-label mb-1">Color</label>
+                                {{ form.color }}
+                            </div>
+
                             <div class="form-group">
                                 <label for="sortno" class="control-label mb-1">Stock</label>
                                 {{ form.sortno }}
                             </div>
+                            <div class="form-group">
+                                <label for="price" class="control-label mb-1">Price</label>
+                                {{ form.price }}
+                            </div>
+
                             <div>
                                 <button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
                                     <span id="payment-button-amount">Create Product</span>
