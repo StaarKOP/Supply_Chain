@@ -13,7 +13,7 @@ cd supply_chain
 ```
 3. Create Virtual Environment
 ```
-python3 -m venv venv
+python -m venv venv
 ```
 4. Active Virtual Environment
 ```
